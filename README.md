@@ -88,7 +88,7 @@ As a baseline, compare your average Error scores to the following chart, which i
 GitHub Details
 ---
 
-- Fork the [GitHub Repository](http://github.com/cs573-16f/04-Experiment). You now have a copy associated with your username.
+- Fork the GitHub Repository. You now have a copy associated with your username.
 - Make changes to index.html to fulfill the project requirements. 
 - Make sure your "master" branch matches your "gh-pages" branch. See the GitHub Guides referenced above if you need help.
 - Edit the README.md with a link to your gh-pages site: http://YourUsernameGoesHere.github.io/05-Experiment/index.html
