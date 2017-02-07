@@ -1,0 +1,168 @@
+/*
+body {
+	    color: pink;
+
+		margin: 10px;
+		padding: 25px;
+	}*/
+
+
+
+
+/*body {
+			background-color: #ffffff;
+      		color: #000000;
+      		font-size: large;
+      		font-family: 'Exo 2', sans-serif;
+      		margin-left: auto;
+      		margin-right: auto;
+		}
+		div {
+			background-color: #ffffff;
+      		color: #000000;
+      		font-size: large;
+      		font-family: 'Exo 2', sans-serif;
+      		width: 800px;
+      		height: auto;
+      		text-align: center;
+      		margin-left: auto;
+      		margin-right: auto;
+		}*/
+
+h1 {
+	font-family: 'Arvo', cursive;
+}
+
+h2 {
+	font-family: 'Arvo', cursive;
+}
+p {
+	margin:5px;
+	font-family: 'Arvo', serif;
+	font-size: 80%;
+}
+input[type=tel] {
+      position: bottom;
+      top:68%;
+      left:25%;
+        width: 40%;
+        height: 2%;
+        padding: 12px 20px;
+        margin: 10px 60px;
+/*        margin-left: 100px;*/
+  /*      margin: auto;*/
+        box-sizing: border-box;
+            border: 3px solid #ccc;
+            -webkit-transition: 0.5s;
+            transition: 0.5s;
+            outline: none;
+            font-family: 'Arvo', serif;
+    }
+
+/*input[type=tel]:focus {
+        border: 3px solid #555;
+        font-family: 'Arvo', serif;
+        margin-left: 40px;
+    }*/
+
+/*#numbers{
+        margin-left: 100px;
+}*/
+
+.button {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #f4511e;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 18px;
+  padding: 0px;
+  width: 80px;
+  height: 30px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+  margin-left: 0px;
+  font-family: 'Arvo', serif;
+}
+
+.button1 {
+  color: #FFFFFF;
+  border-radius: 4px;
+  background-color: #0095FF;
+  border: none;
+  font-size: 20px;
+  height: 40px;
+  width: 190px;
+  margin: 15px;
+  cursor: pointer;
+  font-family: 'Arvo', serif;
+
+}
+
+#coverT{
+  text-align: center;
+  margin-top: 100px;
+}
+
+#cover{
+  text-align: center;
+}
+#paper{
+  color: grey;
+  font-size: 12px;
+  text-align: center;
+  margin-top: 40px;
+}
+
+
+#progressNum{
+	margin-left: 280px;
+/*    width:600px;*/	      
+}
+
+
+#chart{
+      width: 600px;
+      height:400px;
+      border: 1px;
+/*      margin-right: 100px;*/
+      margin-left: 330px;
+      float:center;
+      margin: auto;
+/*      vertical-align: middle;*/
+    }
+
+#input{
+      width:300px;
+/*      height:500px;*/
+      border:1px;
+      margin-right: 10px;
+      float: top;
+      text-align: center;
+/*      margin-left: 450px;*/
+      margin: auto;
+      font-family: 'Arvo', serif;
+    }
+
+#paragraph{
+/*      float: left;*/
+      width: 500px;
+      margin-top: 60px;
+      margin-left: -100px;
+      font-family: 'Arvo', serif;
+    }
+
+rect {
+          stroke: black;
+    }
+    .center {
+          text-align: center;
+    }
+/*CSS样式包括选择器(selectors)和规则(rules)。选择器指定应用样式的元素，下面是示例:
+
+h1: 选择第1层标题
+p: 选择段落
+.caption: 选择class为caption的元素
+#subnav: 选择ID为subnav的元素

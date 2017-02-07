@@ -1,0 +1,451 @@
+<script src="https://d3js.org/d3.v3.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Arvo" rel="stylesheet">
+<!DOCTYPE html>
+<html>
+<head>
+	<title>A3:Experiment By Congyang</title>
+	<!-- <link href="https://fonts.googleapis.com/css?family=Exo+2|Poiret+One" rel="stylesheet"> -->
+	<!-- <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet"> -->
+	<link rel="stylesheet" type="text/css" href="style.css">
+  		
+	<style >
+	</style> 
+
+</head>
+
+<body>
+<!-- 	<center><h1>Reproduce of Cleveland & Mcgill Experiment</h1>
+	<h2>A3:Experiment By Congyang</h2></center> -->
+
+
+  <div id = "chart">
+     <div id = "chartContainer"></div>
+     <div id = "progressBar"></div>
+     <div id = "progressNum"></div>
+     <div id = "buttonsvg1"></div>
+     <div id = "welcome"></div>
+  </div>
+    
+  <div id = "input">
+    <div id = "paragraph">
+    <!-- 要缩小文本间距 -->
+      <p>Two values are marked with dots.</p>
+      <p>What do you think the percent of the smaller value to the larger value?</p>
+      <p>Please put your answer below.</p>
+      <p>e.g.If you think the small one is exactly a half of the bigger one,</p>
+      <p>please input "50".</p>
+    </div>
+
+    <!-- build the bottom of next, constraint it to the number with charcode -->
+    <!-- CSS make the color button -->
+      <input id = "numbers" 
+             onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+      	     type="tel" 
+      	     placeholder="Number 1~99">
+      <button id = "button" 
+      		  class="button" 
+      		  onclick="numberCheck()">
+      		  Next
+      </button>     
+  </div>
+
+    <script type = "text/javascript">
+
+		// The de-facto unbiased shuffle algorithm
+        function shuffle(array){
+        var currentIndex = array.length,
+            temporaryValue,
+            randomIndex;
+
+            // While there remain elements to shuffle...
+            while(0 !== currentIndex){
+
+            	// Pick a remaining element...
+                randomIndex = Math.floor(Math.random()*currentIndex);
+                currentIndex -= 1;
+
+                // And swap it with the current element.
+                temporaryValue = array[currentIndex];
+                array[currentIndex] = array[randomIndex];
+                array[randomIndex] = temporaryValue;
+            };
+        return array;
+        }
+        // console.log(arr);
+        var arr =[];
+        for (i=0; i<3; i++){
+       	  for(j=0; j<21; j++){
+       	   arr.push(i);
+      	  };
+     	};
+
+     	// The input popup function
+      	function numberCheck(){
+        numbers = Number(document.getElementById("numbers").value);
+        // if(numbers ==")...
+        if(numbers >99){
+           	alert("Sorry, wrong input");
+          return;
+        };
+
+        // function of data->csv
+		function download_csv(){
+        for(i=0; i< max_trial; i++){
+          output[i+1] =[
+          trial_array[i],
+          plottype_array[i],
+          userinputs[i],
+          act_percent_array[i],
+          //accuracy_array[i]
+          ]
+        }
+        var data = output;
+        var csvContent = "data:text/csv;charset=utf-8,";
+        data.forEach(function(infoArray, index){
+            dataString = infoArray.join(",");
+            csvContent += index < data.length ? dataString+ "\n" : dataString;
+        }); 
+        var encodedURI = encodeURI(csvContent);
+        var link = document.createElement("a");
+        link.setAttribute("href", encodedURI);
+        link.setAttribute("download", "participate_A3.csv");
+        document.body.appendChild(link); // Required for FF
+        link.click(); 
+      };
+
+		function outTable() {
+	          d3.select("#chartContainer").remove();
+	          d3.select("#progressBar").remove();
+	          d3.select("#input").remove();
+	          d3.select("#progressNum").remove();
+	          d3.select("#chart").append("text")
+	          					 .text("This is your test result, appreciate your great help")
+        };
+
+		// // The table generation function
+		// function tabulate(data, columns) {
+		//     var table = d3.select("body").append("table")
+		//             .attr("style", "margin-left: 500px")
+		//             // .attr("y", -100),
+		//         thead = table.append("thead"),
+		//         tbody = table.append("tbody");
+
+		//     // append the header row
+		//     thead.append("tr")
+		//         .selectAll("th")
+		//         .data(columns)
+		//         .enter()
+		//         .append("th")
+		//             .text(function(column) { return column; });
+
+		//     // create a row for each object in the data
+		//     var rows = tbody.selectAll("tr")
+		//         .data(data)
+		//         .enter()
+		//         .append("tr");
+
+		//     // create a cell in each row for each column
+		//     var cells = rows.selectAll("td")
+		//         .data(function(row) {
+		//             return columns.map(function(column) {
+		//                 return {column: column, value: row[column]};
+		//             });
+		//         })
+		//         .enter()
+		//         .append("td")
+		//         .attr("style", "font-family: Courier") // sets the font style
+		//             .html(function(d) { return d.value; });
+		    
+		//     return table;
+		// }
+
+		// // render the table
+		//  var csvTable = tabulate(data, ["Trial Number","Vis Type","Participate Percent","Standard Percent","Accuracy"]);
+		 
+
+        //the whole progress pipeline, n/60 in CSS
+        progress(trialnum);
+        trialnum += 1;
+        userinputs.push(numbers.toFixed(0));
+        act_percent_array.push(act_percent.toFixed(0));
+        accuracy = count_accuracy(act_percent, numbers);
+        //accuracy_array.push(accuracy.toFixed(0));
+        trial_array.push(trialnum);
+        plottype_array.push(plottype);
+        document.getElementById("progressNum").innerHTML= trialnum+1+"/60"
+
+        //If the test finished, show the 4 functions.
+        if(trialnum <max_trial){
+          shownextplot();
+        }
+        else{
+          download_csv();
+          initial();
+          outTable();
+       		 };
+        
+        };
+
+      // Result display on the screen
+      // 需要增加把这个不仅要生成csv，还要在页面上显示出来
+      var numbers = 0,
+          d = new Date()
+          userinputs = [],
+          trialnum = 0,
+          max_trial = 60,
+          act_percent_array =[],
+          act_percent = 0,
+          //accuracy_array = [],
+          trial_array = [],
+          plottype = '',
+          plottype_array = [];
+          output = [["Trial Number","Vis Type","Participate Percent","Standard Percent"]];
+          
+      // Vis 
+      function initial(){
+        svg.selectAll("*").remove();
+        d3.select("#numbers").property("value","");
+      };
+
+
+      function chooseplot(num){
+        if(num == 0){
+          drawpie();
+          plottype = "Pie Chart";
+        }
+        else if(num == 1){
+          drawBar1();
+          plottype = "Bar Chart";
+        }
+        // else if(num == 2){
+        //   drawBar2();
+        //   plottype = "Vertical Bar Chart";
+        // }        
+        else{
+          drawtree();
+          plottype = "Tree Chart";
+        }
+      };
+
+
+      function showfirstplot(){
+          chooseplot(arr[trialnum]);
+          document.getElementById("progressNum").innerHTML= trialnum+1+"/60";
+      };
+      
+      function shownextplot(){
+        initial();
+        chooseplot(arr[trialnum]);
+      };
+
+      function percentGap(num1, num2){
+        if(num1 >= num2){
+          largenum = num1;
+          smallnum = num2;
+        }
+        else{
+          largenum = num2;
+          smallnum = num1;
+        };
+        percent = (smallnum/largenum)*100
+        return percent;
+      };
+
+
+      function count_accuracy(trueper, userinp){
+        accuracy_scaled = Math.abs(trueper - userinp) + 1/8;
+        if(accuracy_scaled <=1){
+          accuracy = 0;
+        }
+        else{
+          accuracy = Math.log2(accuracy_scaled);
+        }
+        return accuracy;
+      };
+      
+      // Build a 10 random data table and dots
+      function randomdata(){
+        var dataset = new Array();
+      for (i = 0; i<10; i++){
+          dataset[i] = Math.floor(Math.random()*100)+1;// data must have at least 1
+        };
+        return dataset;
+      };
+            
+      function dotsindex(){
+        var dots = new Array();
+        for (i = 0; i<2; i++){
+          dots[i] = Math.floor(Math.random()*10);
+        };
+        // dots index cannot be neither the same number not the adjacent number(reduce noise)
+        while (dots[0] == dots[1]|| Math.abs(dots[0]-dots[1]==1)){
+          dots[1] = Math.floor(Math.random()*10);
+        };
+        return dots;
+      }
+
+    	//Build Plot Canvas
+        var margin = {top: 50, right: 5, bottom: 0, left: 0},
+             width = 600 - margin.left - margin.right,
+        	height = 400 - margin.top - margin.bottom;
+
+
+    	//Build Canvas
+    	var svg = d3.select("#chartContainer").append("svg:svg")
+       										  .attr("width", width + margin.left + margin.right)
+									          .attr("height", height + margin.top + margin.bottom)
+									          .append("g")
+									          // .append("vertical-align", middle)
+									          .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+									          $("svg").css({top: 10, left: 0, position: "relative"});//Center the canvas
+      
+      // init some global vars
+      var progress_width = 600;
+      //add a progress bar
+      var baseLine = d3.select("#progressBar").append("svg:svg")
+					                          .attr("width", progress_width)   
+					                          .attr("height", 20)
+                        //.append("g");
+                        //.attr("transform", "translate(" + margin.left + ")", 0)
+      var backRect = baseLine.append("svg:rect")
+		                     .attr("x", 50)
+		                     .attr("y", 0)
+		                     .attr("width", 500)
+		                     .attr("height", 10)
+		                     .style("fill", "none" )
+		                     .style("stroke", "grey")
+		                     .style("stroke-width", "1");
+      var rect = baseLine.append("svg:rect")
+	                     .attr("x", 50)
+	                     .attr("y", 0)
+	                     .attr("width", 10)
+	                     .attr("height", 10)
+	                     .style("stroke", "green")
+	                     .style("fill", "green");
+
+      // draw the square that shows how many trials you have taken
+      function progress(trials){
+      	 var rect = baseLine.append("svg:rect")
+		                    .attr("x", 50+8.5*(trials+1))
+		                    .attr("y", 0)
+		                    .attr("width", 10)
+		                    .attr("height", 10)
+		                    .style("stroke", "green")
+		                    .style("fill", "green");
+       					 };
+
+      //Draw Pie Chart
+      function drawpie(){
+
+        var dataset = randomdata();
+        var    dots = dotsindex();
+        var     pie = d3.layout.pie();
+        var piedata = pie(dataset);
+        act_percent = percentGap(dataset[dots[0]], dataset[dots[1]]);
+        
+        //console.log(piedata)
+        var radius = 130,
+               arc = d3.svg.arc()
+               			   .innerRadius(60)
+               			   .outerRadius(radius),
+              path = svg.selectAll("g")
+			            .data(piedata)
+			            .enter()
+			            .append("path")
+			            .attr("width", 100)
+			            .attr("height", 50)
+			            .attr("d", arc)
+			          	.attr("stroke", "black")
+			          	.attr("stroke-width",2)
+			          	.attr("fill","none")
+			          	.attr("transform","translate("+width/2+","+height/2.2+")");
+        
+        //Add point       
+        svg.append("circle")
+        .attr("cx", width/2+5*(Math.sin(piedata[dots[0]].endAngle-((piedata[dots[0]].endAngle-piedata[dots[0]].startAngle)/2))*15))
+        .attr("cy", height/2.2-5*(Math.cos(piedata[dots[0]].endAngle-((piedata[dots[0]].endAngle-piedata[dots[0]].startAngle)/2))*15))
+        .attr("r", 3)
+        .attr("fill", "black");
+        svg.append("circle")
+        .attr("cx", width/2+5*(Math.sin(piedata[dots[1]].endAngle-((piedata[dots[1]].endAngle-piedata[dots[1]].startAngle)/2))*15))
+        .attr("cy", height/2.2-5*(Math.cos(piedata[dots[1]].endAngle-((piedata[dots[1]].endAngle-piedata[dots[1]].startAngle)/2))*15))
+        .attr("r", 3)
+        .attr("fill", "black");
+      }
+
+      // Draw Vertical Bar Chart
+
+      // Draw Horizontal Bar Chart
+      function drawBar1(){
+
+        var dataset = randomdata(),
+               dots = dotsindex();
+        act_percent = percentGap(dataset[dots[0]], dataset[dots[1]]);
+
+        for( i = 0; i< 10; i++){
+         var Hbar = svg.append("rect")
+		               .attr("class","bar")
+		               .attr("x", 90+(i*45))
+		               .attr("width", 35)
+		               .attr("y", height-150-(dataset[i]*2.5)+80)
+		               .attr("height", (dataset[i]*2.5))
+		               .attr("stroke", "black")
+		               .attr("stroke-width",2)
+		               .attr("fill","none")
+        }
+        for (i = 0; i <2; i++){
+          svg.append("circle")
+             .attr("cx", 107+(dots[i]*45))
+             .attr("cy",height-160+80)
+             .attr("r",3)
+             .attr("fill", "black")
+        }
+      }
+
+      // Draw Tree Chart
+      function drawtree() {
+
+        var dots = dotsindex();
+        	data = []
+        var tree = {
+          children : data
+        };
+        for (i = 0; i<10; i++){
+         value = Math.floor(Math.random()*100)+1;
+          var child = {};
+           child["size"] = value;
+          child["index"] = i;
+                 data[i] = child;
+        };
+
+        act_percent = percentGap(data[dots[0]].size, data[dots[1]].size);    
+        var treemap = d3.layout.treemap()
+                          .size([width/1.5,height/1.5])
+                          .sticky(true)
+                          .value(function(d) { return d.size; });
+         
+        var cell = svg.data([tree]).selectAll("g")
+                       .data(treemap)
+                       .enter().append("g")
+                       .attr("class", "cell")
+                       .attr("transform", function(d) { return "translate(" + (d.x+105)  + "," + (d.y+50)  + ")"; });
+        cell.append("rect")
+             .attr("width", function(d) { return d.dx; })
+             .attr("height", function(d) { return d.dy; })
+             .style("fill", function(d) { return "none"; });
+               svg.select("g").select("g").remove();
+        cell.append("text")
+             .attr("x", function(d) { return d.dx/2 ; })
+             .attr("y", function(d) { return d.dy/2 ; })
+             .attr("dy", ".35em")
+             .attr("text-anchor", "middle")
+             .text(function (d) { return (d.index == dots[0])||(d.index == dots[1]) ? "\u25CF" : null; });
+        };
+      shuffle(arr);
+      showfirstplot();
+
+      
+  </script>
+  </body>
+</html>

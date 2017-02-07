@@ -1,13 +1,43 @@
-<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="https://d3js.org/d3.v3.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Arvo" rel="stylesheet">
+<!DOCTYPE html>
+<html>
+<head>
+	<title>A3:Experiment By Congyang</title>
+	<!-- <link href="https://fonts.googleapis.com/css?family=Exo+2|Poiret+One" rel="stylesheet"> -->
+	<!-- <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet"> -->
+	<link rel="stylesheet" type="text/css" href="style.css">
+  		
+	<style >
+	</style> 
 
-
-<style>
-</style>
+</head>
 
 <body>
-  <h1> Experiment </h1>
-</body>
+	<body>
+	<div id='begin'>
+		<h2 id='coverT'>Classic Perception Experiment</h2>
+		<p id='cover'>In this experiment, you are asked to judge</p>
+		<p id='cover'>what is the percent of a smaller value to a larger value in serveral charts.</p>
+		<p id='cover'>——————</p>
+		<p id='cover'>We won't record any other information from you except your answers.</p>
+		<p id='cover'>Click the <span id="inline-yellow">"Agree“</span> button to begin.</p>
+		<p id='cover'>——————</p>
+		<p id='cover'>Thank you!</p>
+		<p id='cover'><button id = "button1" 
+						   class = "button1" 
+      	  onclick="location.href = 'content.html'">
+      	  Agree
+        </button></p>
 
-<script>
-  console.log(d3); // test if d3 is loaded
-</script>
+	<!-- 	<button id = "button1" 
+      		  class="button1" 
+      		  onclick="location.href='content.html'">
+      		  Agree
+        </button>  -->
+
+        <p id='paper'>Based on the <a href="http://www.cs.ubc.ca/~tmm/courses/cpsc533c-04-spr/readings/cleveland.pdf">PAPER</a> of William Cleveland and Robert McGill published in 1984</p>
+	</div>
+	</body>
+</html>

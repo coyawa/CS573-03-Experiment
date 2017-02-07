@@ -9,6 +9,12 @@ By Congyang Wang --- 2017/02/01
 * Big size vs Small size
 
 http://codementum.org/cleveland-mcgill/
+http://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+http://bl.ocks.org/keithcollins/a0564c578b9328fcdcbb
+http://bl.ocks.org/d3noob/473f0cf66196a008cf99
+http://www.w3schools.com/css/css3_buttons.asp
+https://greenmzc.github.io/2016/11/07/D3-js上手——饼状图/
+
 > On page load, a semi-random 5-digit dataset is generated. Datasets are generated using the same algorithm that Cleveland and McGill used in their study.
 Currently, the best way to extract the charts is to use SVG Crowbar from Shan Carter.
 
