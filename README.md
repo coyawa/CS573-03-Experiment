@@ -30,8 +30,8 @@ I use the D3.js to build this experiment,  these screenshots are the Welcome pag
 ![](https://ww1.sinaimg.cn/large/006tKfTcgy1fcio7vgxe5j31kw0pw0x6.jpg)
 ---
 **Experiment Result Store:**. 
-![](https://ww2.sinaimg.cn/large/006tKfTcgy1fciu1s0csij30z80z4442.jpg)
-
+![](https://ww4.sinaimg.cn/large/006tKfTcgy1fciyylx5szj30sq0qgtby.jpg)
+---
 ##Analysis
 
 First, I use `python` to combine the 10 .csv experiment results.
