@@ -1,6 +1,6 @@
 #Assignment 3 - Replicating a Classic Experiment
 
-By Congyang Wang --- 2017/02/01
+By Congyang Wang --- 2017/02/05
 
 *Assignment 3: In this assignment I implemented a simple controlled experiment using some of the visualizations I've been building this semester. This experiment is based on the classic paper ([Download Link](http://www.math.pku.edu.cn/teachers/xirb/Courses/biostatistics/Biostatistics2016/GraphicalPerception_Jasa1984.pdf))  published in 1984 written by Cleveland & McGill*   
   
@@ -49,9 +49,9 @@ with open('a3_par_all.csv', 'a') as singleFile:
 ```  
 
 Then, like the paper did, I use the **Log-base-2** to get the right ranking, 
-> Why **Log-base-2**
-> 1. Log scale is good for a relative error.
-> 2. Add 1/8 can prevent a distortion of the scale at the bottom end because some cases have the zero absolute errors.
+> Why **Log-base-2**  
+> 1. Log scale is good for a relative error.  
+> 2. Add 1/8 can prevent a distortion of the scale at the bottom end because some cases have the zero absolute errors.  
 > 3. Log base 2 because average relative errors tended to change by factors less than 10.
 
 Here is the result of three different chart：
@@ -67,16 +67,15 @@ From the table we can see the the Bar Chart have the best performance and the Tr
 **Result Order: Best to Worst**  
 From this figure, we can find, the Log Error can reduce more gap between different charts, it can also reduce the bias as we mentioned before.  
 ![](https://ww2.sinaimg.cn/large/006tKfTcgy1fciurfrz8mj31520ygact.jpg)  
-
+---
 **Different Charts Comparison**  
 Now, let us combine this experiment result with the Cleveland & McGill's Results, we can find the line chart have the almost same performance even after 20 years.
 
 ![](https://ww2.sinaimg.cn/large/006tKfTcgy1fciy0y8mt6j31b80tcq59.jpg)
-
+---
 **95% Bootstrap Confidence Interval** 
-![](https://ww2.sinaimg.cn/large/006tKfTcgy1fciy4vv3ujj31ce0p0gmw.jpg)
-
-
+![](https://ww2.sinaimg.cn/large/006tKfTcgy1fciyrz2iooj31800pw3zj.jpg)
+---
 ##Technical and Design Achievement
 * Every single trial use the random algorithm to display.
 * More than 60 times observation for every participate, this may let the participate loss patient and we can get more accuracy result, 
