@@ -87,7 +87,8 @@ Now, let us combine this experiment result with the Cleveland & McGill's Results
 
 I learn a tons of experience from this project, that's why there are more reference links I list at the end.  
 But there are also more update work should be done in the near future, like implement the [Latin Square design](http://en.wikipedia.org/wiki/Latin_square) to ensure that the 60 trials are counterbalanced; Show the experiment result per participate data table in the End page; Try more comparison like Color vs No Color / Up down vs Left right / Big size vs Small size, etc.
-
+![](https://ww2.sinaimg.cn/large/006tKfTcgy1fciz09b04wj306w03dglk.jpg)
+---
 **Reference:**   
 http://codementum.org/cleveland-mcgill/  
 http://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array  
