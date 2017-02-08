@@ -29,8 +29,8 @@ I use the D3.js to build this experiment,  these screenshots are the Welcome pag
 **Pie/Tree/Bar Charts Page:**  
 ![](https://ww1.sinaimg.cn/large/006tKfTcgy1fcio7vgxe5j31kw0pw0x6.jpg)
 ---
-**Experiment Result Store:**. 
-![](https://ww4.sinaimg.cn/large/006tKfTcgy1fciyylx5szj30sq0qgtby.jpg)
+**Experiment Result Store:** 
+![](https://ww3.sinaimg.cn/large/006tKfTcgy1fciz3pxen8j317k0s277z.jpg)
 ---
 ##Analysis
 
