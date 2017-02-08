@@ -54,7 +54,7 @@ Then, like the paper did, I use the **Log-base-2** to get the right ranking,
 > 2. Add 1/8 can prevent a distortion of the scale at the bottom end because some cases have the zero absolute errors.
 > 3. Log base 2 because average relative errors tended to change by factors less than 10.
 
-Here is the result of three different chart:   
+Here is the result of three different chart：
 
 | Chart Type | Log Error |
 | --- | --- |
@@ -62,18 +62,19 @@ Here is the result of three different chart:
 | Pie Chart | 2.15 |
 | Treemap Chart | 2.39 |
 
-From the table we can see the 
+From the table we can see the the Bar Chart have the best performance and the Treemap Chart has the worst performance, there is a trick, as we learned from other researchers experiment results, pie chart could go worse than this score, but in my experiment, my pie chart looks more like the DOUNT, there is a inner circle in the chart, so the participates can got a better accuracy in the experiment.
 
 **Result Order: Best to Worst**  
-![](https://ww2.sinaimg.cn/large/006tKfTcgy1fciurfrz8mj31520ygact.jpg)
+From this figure, we can find, the Log Error can reduce more gap between different charts, it can also reduce the bias as we mentioned before.  
+![](https://ww2.sinaimg.cn/large/006tKfTcgy1fciurfrz8mj31520ygact.jpg)  
 
+**Different Charts Comparison**  
+Now, let us combine this experiment result with the Cleveland & McGill's Results, we can find the line chart have the almost same performance even after 20 years.
 
+![](https://ww2.sinaimg.cn/large/006tKfTcgy1fciy0y8mt6j31b80tcq59.jpg)
 
-
-![](https://ww4.sinaimg.cn/large/006tKfTcgy1fciwnqikjdj314q112tb5.jpg)
-
-
-
+**95% Bootstrap Confidence Interval** 
+![](https://ww2.sinaimg.cn/large/006tKfTcgy1fciy4vv3ujj31ce0p0gmw.jpg)
 
 
 ##Technical and Design Achievement
